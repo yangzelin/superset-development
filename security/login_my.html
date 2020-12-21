@@ -15,14 +15,14 @@
 
                 <form class="form" action="" method="post" name="login">
                     {{form.hidden_tag()}}
-                    <div class="help-block">{{_("请使用 邮箱密码 登录")}}:</div>
+                    <div class="help-block">{{_("请使用 用户名/密码 登录")}}:</div>
                     <div class="control-group{% if form.errors.openid %} error{% endif %}">
-                        <label class="control-label" for="openid">{{_("Email")}}:</label>
+                        <label class="control-label" for="openid">{{_("Username")}}:</label>
 
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                {{ form.email(size = 80, class = "form-control") }}
+                                {{ form.username(size = 80, class = "form-control") }}
                             </div>
                             {% for error in form.errors.openid %}
                             <span class="help-inline">[{{error}}]</span><br>
@@ -44,10 +44,10 @@
                             <br>
                             <div>
                                 <input class="btn btn-primary btn-block" type="submit" value="{{_('Sign In')}}">
-                                <a href="https://yourserver.com/sign_up?_src=superset" class="btn btn-block btn-primary" data-toggle="tooltip" rel="tooltip"
+                                <!--<a href="https://yourserver.com/sign_up?_src=superset" class="btn btn-block btn-primary" data-toggle="tooltip" rel="tooltip"
                                 title="{{_('If you are not already a user, please register')}}">
                                     {{_('Register')}}
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </div>

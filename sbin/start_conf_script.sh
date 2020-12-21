@@ -2,7 +2,7 @@
 current_dir=$(cd $(dirname $0);pwd)
 
 # 1. cd incubator-superset project
-SUPERSET_ROOT_DIR="/Users/serena/Downloads/incubator-superset-0.26.2-clean"
+SUPERSET_ROOT_DIR="/root/anaconda3/envs/superset/lib/python3.6/site-packages"
 
 # 2. move conf and security dir to your superset source code root dir
 # 首先将该目录下的 conf 和 security 分别复制到superset 源码的根目录下

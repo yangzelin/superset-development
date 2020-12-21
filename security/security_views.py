@@ -23,11 +23,11 @@ logger = logging.getLogger(__name__)
 
 class MyLoginForm(DynamicForm):
     """
-    My customize login form, only set email and password as login request
+    My customize login form, only set username and password as login request
     more options could be set here
     """
-    email = StringField(
-        lazy_gettext('Email'), validators=[Required(), Email()])
+    username = StringField(
+        lazy_gettext('Username'), validators=[Required()])
     password = PasswordField(lazy_gettext("Password"), validators=[Required()])
 
 
@@ -42,14 +42,14 @@ class MyAuthRemoteUserView(AuthRemoteUserView):
     @expose('/login/', methods=['GET', 'POST'])
     def login(self):
         logger.info("My special login...")
-        if g.user is not None and g.user.is_authenticated():
+        if g.user is not None and g.user.is_authenticated:
             return redirect(self.appbuilder.get_url_for_index)
 
         form = MyLoginForm()
 
         if form.validate_on_submit():
-            logger.info("going to auth MY user: %s" % form.email.data)
-            my_user = remote_server_api.authenticate(form.email.data,
+            logger.info("going to auth MY user: %s" % form.username.data)
+            my_user = remote_server_api.authenticate(form.username.data,
                                             form.password.data)
             # if my_user is authenticated                          
             if my_user:
@@ -63,9 +63,9 @@ class MyAuthRemoteUserView(AuthRemoteUserView):
             else:
                 flash(as_unicode(self.invalid_login_message), 'warning')
         else:
-            if form.errors.get('email') is not None:
+            if form.errors.get('username') is not None:
                 flash(
-                    as_unicode(" ".join(form.errors.get('email'))), 'warning')
+                    as_unicode(" ".join(form.errors.get('username'))), 'warning')
 
         return self.render_template(
             self.login_template,

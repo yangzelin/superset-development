@@ -35,12 +35,12 @@ class MySecurityManager(SupersetSecurityManager):
                 username=username,
                 first_name=username.split('@')[0],
                 last_name='-',
-                email=username,
+                # email='',
                 role=self.find_role(self.auth_user_registration_role))
 
         # If user does not exist on the DB and not auto user registration,
         # or user is inactive, go away.
-        elif user is None or (not user.is_active()):
+        elif user is None or (not user.is_active):
             logger.info(LOGMSG_WAR_SEC_LOGIN_FAILED.format(username))
             return None
             
